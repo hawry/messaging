@@ -12,6 +12,9 @@ plugins {
     id "com.github.ben-manes.versions" version "0.20.0"
 }
 
+apply plugin: 'maven'
+group = 'com.github.hawry'
+
 jar {
     baseName = 'messaging'
     version = '0.0.1'
