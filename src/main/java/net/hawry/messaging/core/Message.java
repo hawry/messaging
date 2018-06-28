@@ -118,7 +118,7 @@ public class Message {
   }
 
   /**
-   * Serializes the object instance to a JSON string.
+   * Serializes the object instance to a JSON string. If validation fails, an Exception will be thrown containing info on what fields that are missing and/or wrongly entered.
    * @return the json string representing the object
    */
   public String toJson() throws MissingRequiredFieldException {

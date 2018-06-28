@@ -47,7 +47,7 @@ public class Content {
     return this.metadata;
   }
 
-  public void validate() throws MissingRequiredFieldException {
+ void validate() throws MissingRequiredFieldException {
     if (this.text==null)
       throw new MissingRequiredFieldException("text");
   }
