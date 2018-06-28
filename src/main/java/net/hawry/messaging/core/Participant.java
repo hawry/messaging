@@ -18,7 +18,7 @@ public class Participant {
     return id;
   }
 
-  protected void validate() throws MissingRequiredFieldException {
+  void validate() throws MissingRequiredFieldException {
     if (this.id==null)
       throw new MissingRequiredFieldException("id");
 
