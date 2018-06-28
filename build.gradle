@@ -10,6 +10,7 @@ plugins {
     // Apply the java-library plugin to add support for Java Library
     id 'java-library'
     id "com.github.ben-manes.versions" version "0.20.0"
+    id 'net.saliman.cobertura' version '2.5.4'
 }
 
 apply plugin: 'maven'
@@ -30,6 +31,7 @@ dependencies {
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
+    testImplementation "org.slf4j:slf4j-api:1.7.10"
 }
 
 // In this section you declare where to find the dependencies of your project
