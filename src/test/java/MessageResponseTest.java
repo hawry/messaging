@@ -5,7 +5,7 @@ import com.google.gson.Gson;
 import org.junit.Before;
 import org.junit.Test;
 
-import net.hawry.messaging.core.MessageResponse;
+import net.hawry.messaging.core.response.MessageResponse;
 
 
 public class MessageResponseTest {
