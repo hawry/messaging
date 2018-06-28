@@ -9,6 +9,9 @@ public class Participant {
     this.id = id;
   }
 
+  /**
+   * @return the participant id
+   */
   public String getId() {
     return id;
   }
