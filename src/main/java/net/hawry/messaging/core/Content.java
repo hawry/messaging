@@ -2,6 +2,8 @@ package net.hawry.messaging.core;
 
 import com.google.gson.annotations.SerializedName;
 
+import net.hawry.messaging.exceptions.MissingRequiredFieldException;
+
 public class Content {
   @SerializedName("text") String text;
   // @SerializedName("attachment") Attachment attachment;
@@ -43,5 +45,10 @@ public class Content {
    */
   public String getMetadata() {
     return this.metadata;
+  }
+
+  public void validate() throws MissingRequiredFieldException {
+    if (this.text==null)
+      throw new MissingRequiredFieldException("text");
   }
 }
