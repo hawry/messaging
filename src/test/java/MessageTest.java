@@ -1,16 +1,19 @@
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import com.google.gson.Gson;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import net.hawry.messaging.core.Content;
 import net.hawry.messaging.core.Message;
 import net.hawry.messaging.core.MessageType;
 import net.hawry.messaging.core.Participant;
+import net.hawry.messaging.exceptions.MissingRequiredFieldException;
 
 public class MessageTest {
   Gson g = null;
@@ -48,5 +51,17 @@ public class MessageTest {
     assertEquals("456", m.getRecipient().getId());
     assertEquals("123", m.getSender().getId());
     assertNotNull(m.getContent()); // content is tested in separate file
+  }
+
+  public void testOwnSerialization() {
+    Message m = new Message();
+    m.setContent(new Content());
+    m.setSender(new Participant("123"));
+    m.setRecipient(new Participant("1235"));
+    try {
+      System.out.println(m.toJson());
+    } catch (MissingRequiredFieldException e) {
+      e.printStackTrace();
+    }
   }
 }
