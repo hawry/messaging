@@ -1,11 +1,16 @@
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import net.hawry.messaging.core.*;
+import net.hawry.messaging.core.Content;
 import net.hawry.messaging.core.Message;
+import net.hawry.messaging.core.MessageType;
 import net.hawry.messaging.core.Participant;
+import net.hawry.messaging.core.SenderActionType;
 import net.hawry.messaging.exceptions.MissingRequiredFieldException;
+
 
 public class ValidationTest {
   @Rule 
@@ -78,6 +83,62 @@ public class ValidationTest {
       thrown.expect(MissingRequiredFieldException.class);
       thrown.expectMessage("Missing required field(s): [content: Missing required field(s): text]");
 
+      m.toJson();
+    }
+
+
+    @Test
+    public void noRecipient() throws MissingRequiredFieldException {
+      Message m = new Message();
+      m.setSenderAction(SenderActionType.MARK_SEEN);
+
+      assertEquals("mark_seen", m.getSenderAction());
+
+      thrown.expect(MissingRequiredFieldException.class);
+      thrown.expectMessage("Missing required field(s): recipient");
+      m.toJson();
+    }
+
+    @Test
+    public void noRecipientId() throws MissingRequiredFieldException{
+      Message m = new Message();
+      m.setSenderAction(SenderActionType.MARK_SEEN);
+      m.setRecipient(new Participant(null));
+      thrown.expect(MissingRequiredFieldException.class);
+      thrown.expectMessage("Missing required field(s): recipient: Missing required field(s): id");
+      m.toJson();
+    }
+
+    @Test
+    public void noMessageTag() throws MissingRequiredFieldException{
+      Message m = new Message();
+      m.setRecipient(new Participant("123"));
+      m.setMessageType(MessageType.MESSAGE_TAG);
+
+      // set everything except message tag
+      Content c = new Content();
+      c.setText("text");
+      m.setContent(c);
+
+      thrown.expect(MissingRequiredFieldException.class);
+      thrown.expectMessage("Missing required field(s): [tag]");
+      m.toJson();
+    }
+
+    @Test
+    public void testErrorSender() throws MissingRequiredFieldException{
+      Message m = new Message();
+      m.setRecipient(new Participant("123"));
+      m.setSender(new Participant(null));
+      m.setMessageType(MessageType.RESPONSE);
+
+      // set everything except message tag
+      Content c = new Content();
+      c.setText("text");
+      m.setContent(c);
+
+      thrown.expect(MissingRequiredFieldException.class);
+      thrown.expectMessage("Missing required field(s): [sender: Missing required field(s): id]");
       m.toJson();
     }
 }

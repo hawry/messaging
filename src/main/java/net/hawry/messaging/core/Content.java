@@ -5,10 +5,9 @@ import com.google.gson.annotations.SerializedName;
 import net.hawry.messaging.exceptions.MissingRequiredFieldException;
 
 public class Content {
-  @SerializedName("text") String text;
-  // @SerializedName("attachment") Attachment attachment;
-  // @SerializedName("quick_replies") QuickReply[] quickReplies;
-  @SerializedName("metadata") String metadata;
+  @SerializedName("text") protected String text;
+  // @SerializedName("attachment") protected Attachment attachment;
+  // @SerializedName("quick_replies") protected QuickReply[] quickReplies;
 
   /**
    * Sets the text content of the message. Must be UTF-8 and has a 2000 character limit. The text will be concatenated to the first 2000 characters if the length is exceeded.
@@ -26,25 +25,6 @@ public class Content {
    */
   public String getText() {
     return this.text;
-  }
-
-  /**
-   * Sets the optional metadata string. A character limit of 1000 characters. The string will be concatenated to the first 1000 characters if this limit is exceeded.
-   * 
-   * @param metadata the metadata to set
-   */
-  public void setMetadata(String metadata) {
-    if (metadata.length() > 1000)
-      metadata = metadata.substring(0, 1000);
-
-    this.metadata = metadata;
-  }
-
-  /**
-   * @return the metadata string
-   */
-  public String getMetadata() {
-    return this.metadata;
   }
 
  void validate() throws MissingRequiredFieldException {
