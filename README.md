@@ -21,11 +21,11 @@ repositories {
 }
 
 dependencies {
-  implementation 'com.github.hawry:messaging:8f95218'
+  implementation 'com.github.hawry:messaging:0.2.0'
 }
 ```
 
-Note that you can replace the `8f95218` with a specific release tag or any other short commit hash.
+Note that you can replace the `0.2.0` with a specific release tag or any other short commit hash.
 
 ### Maven
 
@@ -38,6 +38,30 @@ Note that you can replace the `8f95218` with a specific release tag or any other
 ### Simple example
 
 ### Mark message as 'seen'
+
+```java
+import net.hawry.messaging.core.Message;
+import net.hawry.messaging.core.MessageBuilder;
+
+/* ... */
+
+MessageBuilder builder = new MessageBuilder();
+Message msg = builder.setRecipient(new Participant("123"))
+                .setSenderAction(SenderActionType.MARK_SEEN)
+                .create();
+
+String json;
+
+try {
+  json = msg.toJson();
+} catch (MissingRequiredFieldsException e) {
+  e.printStackTrace();
+}
+
+System.out.println(json); /* results in {"recipient": {"id": "123"}, "sender_action": "mark_seen"}
+
+/* ... */
+```
 
 ## License
 
