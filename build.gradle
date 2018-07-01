@@ -44,6 +44,11 @@ repositories {
 
 test.outputs.upToDateWhen {false}
 
+task testReports << {
+    java.awt.Desktop.desktop.browse "file:///home/hawry/dev/java/messaging/build/reports/tests/test/packages/default-package.html".toURI()
+    java.awt.Desktop.desktop.browse "file:///home/hawry/dev/java/messaging/build/reports/cobertura/index.html".toURI()
+}
+
 test {
     afterTest { desc, result -> 
         logger.quiet "Executing test ${desc.name} [${desc.className}] with result: ${result.resultType}"
