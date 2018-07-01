@@ -34,7 +34,6 @@ public class MessageTest {
     m.setContent(new Content());
 
     String json = g.toJson(m);
-    System.out.println(json);
 
     assertTrue(json.contains("\"messaging_type\":\"RESPONSE\""));
     assertTrue(json.contains("\"recipient\":{\"id\":\"456\"}"));
@@ -53,15 +52,28 @@ public class MessageTest {
     assertNotNull(m.getContent()); // content is tested in separate file
   }
 
-  public void testOwnSerialization() {
+  @Test
+  public void testToJson() {
+    Content c = new Content();
+    c.setText("hello content");
+    
     Message m = new Message();
-    m.setContent(new Content());
-    m.setSender(new Participant("123"));
-    m.setRecipient(new Participant("1235"));
+    m.setRecipient(new Participant("123"));
+    m.setMessageType(MessageType.RESPONSE);
+    
+
+    m.setContent(c);
+
+    String json;
     try {
-      System.out.println(m.toJson());
-    } catch (MissingRequiredFieldException e) {
-      e.printStackTrace();
+      json = m.toJson();
+    } catch (MissingRequiredFieldException ex) {
+      json = "";
+      ex.printStackTrace();
     }
+    System.out.println(json);
+    assertTrue(json.contains("\"recipient\":{\"id\":\"123\"}"));
+    assertTrue(json.contains("\"messaging_type\":\"RESPONSE\""));
+    assertTrue(json.contains("\"message\":{\"text\":\"hello content\"}"));
   }
 }
