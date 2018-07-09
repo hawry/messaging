@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Hawry/messaging.svg?branch=master)](https://travis-ci.org/Hawry/messaging)
+
 # Messaging
 
 Java API for easy serialization and de-serialization of Facebooks Messenger Platform API. Currently being actively developed.
