@@ -10,7 +10,7 @@ Java API for easy serialization and de-serialization of Facebooks Messenger Plat
 
 Messaging uses the JitPack service, add the following to your `build.gradle`:
 
-```
+```gradle
 repositories {
   ...
   maven { 
@@ -21,13 +21,30 @@ repositories {
 }
 
 dependencies {
-  implementation 'com.github.hawry:messaging:0.2.0'
+  implementation 'com.github.hawry:messaging:0.2.1'
 }
 ```
 
-Note that you can replace the `0.2.0` with a specific release tag or any other short commit hash.
+Note that you can replace the `0.2.1` with a specific release tag or any other short commit hash.
 
 ### Maven
+
+```xml
+<repositories>
+  <repository>
+      <id>jitpack.io</id>
+      <url>https://jitpack.io</url>
+  </repository>
+</repositories>
+```
+
+```xml
+<dependency>
+    <groupId>com.github.hawry</groupId>
+    <artifactId>messaging</artifactId>
+    <version>0.2.1</version>
+</dependency>
+```
 
 ### Other
 
