@@ -71,7 +71,6 @@ public class MessageTest {
       json = "";
       ex.printStackTrace();
     }
-    System.out.println(json);
     assertTrue(json.contains("\"recipient\":{\"id\":\"123\"}"));
     assertTrue(json.contains("\"messaging_type\":\"RESPONSE\""));
     assertTrue(json.contains("\"message\":{\"text\":\"hello content\"}"));

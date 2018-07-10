@@ -22,7 +22,6 @@ public class MessageBuilderTest {
                   .create();
 
     Gson g = new Gson();
-    System.out.println(g.toJson(m));
   }
 
   @Test
@@ -38,10 +37,10 @@ public class MessageBuilderTest {
                   .create();
 
     Gson g = new Gson();
-    System.out.println(g.toJson(m));
+    // System.out.println(g.toJson(m));
 
     try {
-      System.out.println(m.toJson());
+      // System.out.println(m.toJson());
     } catch (Exception e) {
       e.printStackTrace();
     }
