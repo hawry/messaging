@@ -44,4 +44,16 @@ public class MessageResponseTest {
       assertEquals("Access Token Error", response.getError().getErrorCategory());
     }
   }
+
+  public static class FromJson {
+    @Test
+    public void testFromJson_WithValidJsonAndNoError() {
+      String payload = "{'recipient_id':'12345','message_id':'$mid.randomchars'}";
+    }
+
+    @Test
+    public void testFromJson_WithInvalidJsonAndNoError() {
+      String payload = "{'recipient_id':,'message_id':'$mid.randomchars'}";
+    }
+  }
 }
