@@ -14,9 +14,6 @@ plugins {
 }
 
 apply plugin: 'maven'
-apply plugin: 'java'
-apply plugin: 'jacoco'
-
 group = 'com.github.hawry'
 
 jar {
@@ -67,11 +64,4 @@ test {
     testLogging {
         showStandardStreams = true
     }
-}
-
-jacocoTestReport {
-  reports {
-    xml.enabled = true
-    html.enabled = true
-  }
 }
