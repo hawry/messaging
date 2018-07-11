@@ -55,8 +55,8 @@ repositories {
 test.outputs.upToDateWhen {false}
 
 task testReports << {
-    java.awt.Desktop.desktop.browse "file:///home/hawry/dev/java/messaging/build/reports/tests/test/index.html".toURI()
-    java.awt.Desktop.desktop.browse "file:///home/hawry/dev/java/messaging/build/reports/cobertura/index.html".toURI()
+    java.awt.Desktop.desktop.browse "file://${project.projectDir}/build/reports/tests/test/packages/default-package.html".toURI()
+    java.awt.Desktop.desktop.browse "file://${project.projectDir}/build/reports/cobertura/index.html".toURI()
 }
 
 test {
