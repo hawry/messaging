@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.stream.Stream;
-
 import com.google.gson.Gson;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -13,9 +11,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import net.hawry.messaging.core.response.MessageResponse;
@@ -87,15 +83,6 @@ class ResponseErrorTest {
   @Nested
   @DisplayName("Error category")
   class ErrorCategoryTest {
-    // private final String INTERNAL = "Internal Error";
-    // private final String LIMIT = "Limit Error";
-    // private final String UNKNOWN = "Unknown";
-    // private final String BAD_PARAM = "Bad Parameter Error";
-    // private final String ACCESS = "Access Token Error";
-    // private final String PERMISSION = "Permission Error";
-    // private final String ACCOUNT = "Account-Linking Error";
-    // private final String THREAD = "Thread Owner API Error";
-    
     @Test
     @DisplayName("returns INTERNAL")
     void internal() {
