@@ -30,7 +30,17 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.5'
 
     // Use JUnit test framework
-    testImplementation 'junit:junit:4.12'
+    testImplementation(
+      'org.junit.jupiter:junit-jupiter-api:5.1.0'
+    )
+    testRuntimeOnly(
+      'org.junit.jupiter:junit-jupiter-engine:5.1.0'
+    )
+    testCompile(
+        'org.junit.jupiter:junit-jupiter-params:5.1.0'
+    )
+    
+    // testImplementation 'junit:junit:4.12'
     testImplementation "org.slf4j:slf4j-api:1.7.10"
 }
 
@@ -45,14 +55,12 @@ repositories {
 test.outputs.upToDateWhen {false}
 
 task testReports << {
-    java.awt.Desktop.desktop.browse "file:///home/hawry/dev/java/messaging/build/reports/tests/test/packages/default-package.html".toURI()
+    java.awt.Desktop.desktop.browse "file:///home/hawry/dev/java/messaging/build/reports/tests/test/index.html".toURI()
     java.awt.Desktop.desktop.browse "file:///home/hawry/dev/java/messaging/build/reports/cobertura/index.html".toURI()
 }
 
 test {
-    afterTest { desc, result -> 
-        logger.quiet "Executing test ${desc.name} [${desc.className}] with result: ${result.resultType}"
-    }
+    useJUnitPlatform()
     testLogging {
         showStandardStreams = true
     }

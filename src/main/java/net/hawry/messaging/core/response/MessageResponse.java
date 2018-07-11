@@ -1,6 +1,11 @@
 package net.hawry.messaging.core.response;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.annotations.SerializedName;
+
+import net.hawry.messaging.exceptions.InvalidJsonException;
+import net.hawry.messaging.exceptions.MissingRequiredFieldException;
 
 public class MessageResponse {
   @SerializedName("recipient_id") String recipientId;
@@ -33,5 +38,20 @@ public class MessageResponse {
    */
   public ResponseError getError() {
     return this.error;
+  }
+
+  /**
+   * @param json String representation of the JSON-object to serialize to a MessageResponse
+   * @return A serialized MessageResponse
+   */
+  public static MessageResponse fromJson(String json) throws InvalidJsonException {
+    Gson g = new Gson();
+    MessageResponse r = null;
+    try {
+      r = g.fromJson(json, MessageResponse.class);
+    } catch (JsonSyntaxException e) {
+      throw new InvalidJsonException(MessageResponse.class.getSimpleName());
+    }
+    return r;
   }
 }
