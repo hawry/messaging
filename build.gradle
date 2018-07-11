@@ -18,7 +18,7 @@ group = 'com.github.hawry'
 
 jar {
     baseName = 'messaging'
-    version = '0.0.1'
+    version = '0.3.0'
 }
 
 dependencies {
