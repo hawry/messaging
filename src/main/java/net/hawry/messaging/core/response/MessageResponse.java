@@ -5,7 +5,6 @@ import com.google.gson.JsonSyntaxException;
 import com.google.gson.annotations.SerializedName;
 
 import net.hawry.messaging.exceptions.InvalidJsonException;
-import net.hawry.messaging.exceptions.MissingRequiredFieldException;
 
 public class MessageResponse {
   @SerializedName("recipient_id") String recipientId;
